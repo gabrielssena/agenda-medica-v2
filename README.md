@@ -271,12 +271,6 @@ console.log(result);
 
 Projeto acadêmico para fins educacionais – disciplina de Estruturas de Dados.
 
-## 📞 Contato
-
-* **Email:** [seu-email@universidade.edu.br](mailto:seu-email@universidade.edu.br)
-* **GitHub:** [https://github.com/seu-usuario/agenda-medica-v2](https://github.com/seu-usuario/agenda-medica-v2)
-
----
 
 ## 🏆 Conclusão
 
