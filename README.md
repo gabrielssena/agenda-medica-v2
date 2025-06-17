@@ -1,9 +1,6 @@
-📋 **README.md COMPLETO**
-
-```markdown
 # 🏥 Sistema de Agenda Médica Inteligente
 
-Sistema hospitalar desenvolvido para demonstrar a implementação prática de estruturas de dados fundamentais em um cenário médico real.
+Sistema hospitalar desenvolvido para demonstrar a aplicação prática de estruturas de dados fundamentais em um cenário médico real.
 
 ## 🎯 Visão Geral
 
@@ -11,146 +8,142 @@ Este projeto implementa um sistema completo de gestão médica utilizando quatro
 - **Tabela Hash** para gestão de pacientes
 - **Árvore AVL** para agendamento de consultas  
 - **Min-Heap** para fila de urgências
-- **Algoritmo de Huffman** para compressão de prontuários
+- **Algoritmo de Huffman** para compressão de prontuários médicos
 
 ## 🚀 Funcionalidades
 
 ### 👥 Gestão de Pacientes
-- ✅ Cadastro instantâneo com validação de CPF
+- ✅ Cadastro com validação de CPF
 - ✅ Busca em tempo constante O(1)
-- ✅ Armazenamento otimizado com hash table
-- ✅ Tratamento de colisões por encadeamento
+- ✅ Armazenamento eficiente com tabela hash
+- ✅ Tratamento de colisões por encadeamento separado
 
 ### 📅 Agendamento de Consultas
-- ✅ Inserção automática ordenada por data/hora
+- ✅ Inserção ordenada por data/hora
 - ✅ Árvore AVL auto-balanceada
-- ✅ Operações em O(log n)
+- ✅ Operações com complexidade O(log n)
 - ✅ Visualização de fatores de balanceamento
 
 ### 🚨 Fila de Urgências
-- ✅ Priorização automática por gravidade
-- ✅ Min-Heap com propriedade de ordem
+- ✅ Priorização por nível de gravidade
+- ✅ Min-Heap com propriedade de ordenação
 - ✅ Inserção/remoção em O(log n)
-- ✅ Acesso ao próximo paciente em O(1)
+- ✅ Acesso ao próximo atendimento em O(1)
 
 ### 📋 Compressão de Prontuários
 - ✅ Algoritmo de Huffman implementado
-- ✅ Compressão de 40-60% em dados médicos
-- ✅ Códigos de comprimento variável
-- ✅ Estatísticas detalhadas de performance
+- ✅ Compressão de 40% a 60% em prontuários
+- ✅ Geração de códigos binários de comprimento variável
+- ✅ Exibição de estatísticas de performance
 
 ## 🛠️ Tecnologias Utilizadas
 
 ### Backend
-- **PHP 8.0+** - Programação orientada a objetos
-- **Classes personalizadas** para cada estrutura de dados
+- **PHP 8.0+** com orientação a objetos
+- **Classes personalizadas** para estruturas de dados
 - **API REST** com endpoints organizados
-- **Persistência JSON** simulando banco de dados
-- **Validações** de entrada e tratamento de erros
+- **Persistência via JSON** simulando banco de dados
+- **Validação de entrada** e tratamento de erros
 
 ### Frontend
-- **HTML5** semântico e acessível
+- **HTML5 semântico**
 - **CSS3** com Grid Layout e Flexbox
-- **JavaScript ES6+** com async/await
-- **Fetch API** para comunicação assíncrona
-- **Interface responsiva** para diferentes dispositivos
+- **JavaScript ES6+** com uso de async/await
+- **Fetch API** para chamadas assíncronas
+- **Interface responsiva** compatível com múltiplos dispositivos
 
 ### Estruturas de Dados
-- **Tabela Hash** com função hash personalizada
-- **Árvore AVL** com rotações automáticas
-- **Min-Heap** com heapify up/down
-- **Árvore de Huffman** para compressão ótima
+- Tabela Hash com função hash própria
+- Árvore AVL com rotações automáticas
+- Min-Heap com heapify up/down
+- Árvore de Huffman para compressão ótima
 
 ## 📁 Estrutura do Projeto
 
 ```
+
 agenda-medica-v2/
 ├── backend/
-│   ├── index_simples.php          # API principal
+│   ├── index\_simples.php
 │   ├── classes/
-│   │   ├── AgendaMedicaSimples.php # Classe principal
-│   │   └── PersistenciaSimples.php # Persistência de dados
+│   │   ├── AgendaMedicaSimples.php
+│   │   └── PersistenciaSimples.php
 │   ├── dados/
-│   │   ├── DadosDemo.php          # Dados de demonstração
-│   │   └── sistema_dados.json     # Arquivo de persistência
-│   └── .htaccess                  # Configurações Apache
+│   │   ├── DadosDemo.php
+│   │   └── sistema\_dados.json
+│   └── .htaccess
 ├── frontend/
-│   ├── index_funcional.html       # Interface principal
+│   ├── index\_funcional.html
 │   ├── css/
-│   │   └── style_funcional.css    # Estilos da aplicação
+│   │   └── style\_funcional.css
 │   └── js/
-│       └── app_funcional.js       # Lógica do frontend
-└── README.md                      # Este arquivo
-```
+│       └── app\_funcional.js
+└── README.md
+
+````
 
 ## ⚙️ Instalação e Configuração
 
 ### Pré-requisitos
-- **PHP 8.0+** com extensões padrão
-- **Servidor web** (Apache/Nginx) ou XAMPP/WAMP
-- **Navegador moderno** com suporte a ES6
+- PHP 8.0+ com extensões habilitadas
+- Servidor web (Apache/Nginx) ou XAMPP/WAMP
+- Navegador moderno com suporte a ES6+
 
-### Passo a Passo
+### Passos
 
 1. **Clone o repositório**
 ```bash
 git clone https://github.com/seu-usuario/agenda-medica-v2.git
 cd agenda-medica-v2
-```
+````
 
 2. **Configure o servidor web**
+
 ```bash
-# Para Apache, certifique-se que mod_rewrite está habilitado
-### # Para desenvolvimento, use o servidor built-in do PHP:
-
-| php -S localhost:8090 -t . |
-|---|
-
-
+# Apache (com mod_rewrite habilitado)
+# Ou use o servidor embutido do PHP:
+php -S localhost:8090 -t .
 ```
 
-3. **Configure permissões**
+3. **Permissões de escrita**
+
 ```bash
 # Linux/Mac
 chmod 755 backend/dados/
 chmod 666 backend/dados/sistema_dados.json
 
-# Windows - dar permissão de escrita na pasta dados/
+# Windows: conceder permissões de escrita à pasta `dados/`
 ```
 
-4. **Acesse a aplicação**
+4. **Abra no navegador**
+
 ```
 http://localhost:8090/frontend/index_funcional.html
 ```
 
-## 🔧 Configuração da API
+## 📡 Endpoints da API
 
-### Endpoints Disponíveis
+| Método | Endpoint                                                    | Descrição                      |
+| ------ | ----------------------------------------------------------- | ------------------------------ |
+| GET    | `/backend/index_simples.php?action=test`                    | Teste de conectividade         |
+| GET    | `/backend/index_simples.php?action=dashboard`               | Métricas do sistema            |
+| POST   | `/backend/index_simples.php?action=cadastrar_paciente`      | Cadastrar novo paciente        |
+| GET    | `/backend/index_simples.php?action=buscar_paciente&cpf=XXX` | Buscar paciente por CPF        |
+| POST   | `/backend/index_simples.php?action=agendar_consulta`        | Agendar nova consulta          |
+| POST   | `/backend/index_simples.php?action=adicionar_urgencia`      | Adicionar urgência             |
+| GET    | `/backend/index_simples.php?action=pacientes`               | Listar pacientes               |
+| GET    | `/backend/index_simples.php?action=consultas`               | Listar consultas               |
+| GET    | `/backend/index_simples.php?action=urgencias`               | Listar urgências               |
+| GET    | `/backend/index_simples.php?action=compressao`              | Executar compressão Huffman    |
+| GET    | `/backend/index_simples.php?action=popular_dados`           | Carregar dados de demonstração |
+| GET    | `/backend/index_simples.php?action=reset_dados`             | Resetar dados do sistema       |
 
-| Método | Endpoint | Descrição |
-|--------|----------|-----------|
-| GET | `/backend/index_simples.php?action=test` | Teste de conectividade |
-| GET | `/backend/index_simples.php?action=dashboard` | Métricas do sistema |
-| POST | `/backend/index_simples.php?action=cadastrar_paciente` | Cadastrar novo paciente |
-| GET | `/backend/index_simples.php?action=buscar_paciente&cpf=XXX` | Buscar paciente por CPF |
-| POST | `/backend/index_simples.php?action=agendar_consulta` | Agendar nova consulta |
-| POST | `/backend/index_simples.php?action=adicionar_urgencia` | Adicionar à fila de urgência |
-| GET | `/backend/index_simples.php?action=pacientes` | Listar todos os pacientes |
-| GET | `/backend/index_simples.php?action=consultas` | Listar todas as consultas |
-| GET | `/backend/index_simples.php?action=urgencias` | Listar fila de urgências |
-| GET | `/backend/index_simples.php?action=compressao` | Demonstrar compressão Huffman |
-| GET | `/backend/index_simples.php?action=popular_dados` | Carregar dados de demonstração |
-| GET | `/backend/index_simples.php?action=reset_dados` | Limpar todos os dados |
-
-### Exemplo de Requisição
+### Exemplo de Requisição (JavaScript)
 
 ```javascript
-// Cadastrar paciente
 const response = await fetch('http://localhost:8090/backend/index_simples.php?action=cadastrar_paciente', {
     method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-    },
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
         cpf: '12345678901',
         nome: 'João Silva',
@@ -161,267 +154,143 @@ const response = await fetch('http://localhost:8090/backend/index_simples.php?ac
         endereco: 'Rua das Flores, 123'
     })
 });
-
 const result = await response.json();
 console.log(result);
 ```
 
-## 📊 Análise de Complexidade
+## 🧠 Complexidade Computacional
 
-### Operações por Estrutura
+| Estrutura   | Inserção   | Busca    | Remoção  | Espaço |
+| ----------- | ---------- | -------- | -------- | ------ |
+| Tabela Hash | O(1)       | O(1)     | O(1)     | O(n)   |
+| Árvore AVL  | O(log n)   | O(log n) | O(log n) | O(n)   |
+| Min-Heap    | O(log n)   | O(1)\*   | O(log n) | O(n)   |
+| Huffman     | O(n log n) | O(1)     | —        | O(n)   |
 
-| Estrutura | Inserção | Busca | Remoção | Espaço |
-|-----------|----------|-------|---------|--------|
-| **Tabela Hash** | O(1) | O(1) | O(1) | O(n) |
-| **Árvore AVL** | O(log n) | O(log n) | O(log n) | O(n) |
-| **Min-Heap** | O(log n) | O(1)* | O(log n) | O(n) |
-| **Huffman** | O(n log n) | O(1) | N/A | O(n) |
+\* busca do menor elemento
 
-*Busca do mínimo apenas
+### Benchmarks
 
-### Performance Medida
+| Ação                         | Tempo Médio        |
+| ---------------------------- | ------------------ |
+| Cadastro de paciente         | < 1ms              |
+| Busca por CPF                | < 1ms              |
+| Agendamento de consulta      | < 10ms             |
+| Inserção na fila de urgência | < 5ms              |
+| Compressão de dados          | 40–60% de economia |
 
-- **Cadastro de paciente:** < 1ms
-- **Busca por CPF:** < 1ms  
-- **Agendamento:** < 10ms
-- **Inserção na fila:** < 5ms
-- **Compressão:** 40-60% economia de espaço
+## 🧪 Testes
 
-## 🧪 Testes e Demonstração
+### Conteúdo de Teste
 
-### Dados de Teste
-O sistema inclui dados realistas para demonstração:
-- **17 pacientes** com informações completas
-- **9 consultas** agendadas com diferentes médicos
-- **8 casos de urgência** com prioridades variadas
-- **Prontuários médicos** para compressão
+* 17 pacientes simulados
+* 9 consultas agendadas
+* 8 urgências com prioridades diferentes
+* Prontuários médicos com compressão Huffman
 
-### Como Testar
+### Como testar
 
-1. **Carregue dados demo**
-   - Acesse o dashboard
-   - Clique em "📊 Carregar Dados Demo"
-   - Observe as métricas atualizarem
+1. Carregue os dados de demonstração pelo dashboard
+2. Teste cada funcionalidade da interface
+3. Observe as métricas atualizarem em tempo real
 
-2. **Teste cada funcionalidade**
-   - Cadastre um novo paciente
-   - Busque por CPF existente
-   - Agende uma consulta
-   - Adicione uma urgência
-   - Demonstre a compressão
-
-3. **Verifique performance**
-   - Observe tempos de execução
-   - Analise estruturas de dados
-   - Compare complexidades
-
-## 🎓 Aspectos Educacionais
-
-### Conceitos Demonstrados
-
-#### Tabela Hash
-- **Função hash:** `hash(CPF) = CPF % 1009`
-- **Tratamento de colisões:** Encadeamento separado
-- **Fator de carga:** Monitorado para eficiência
-- **Aplicação prática:** Busca instantânea de pacientes
-
-#### Árvore AVL
-- **Auto-balanceamento:** Rotações simples e duplas
-- **Fator de balanceamento:** Mantido entre -1, 0, +1
-- **Invariante:** Árvore sempre balanceada
-- **Aplicação prática:** Agenda cronológica ordenada
-
-#### Min-Heap
-- **Propriedade de heap:** Pai ≤ filhos
-- **Heapify up/down:** Manutenção da propriedade
-- **Priorização:** 1=emergência, 2=urgente, 3=normal
-- **Aplicação prática:** Fila de prioridade médica
-
-#### Algoritmo de Huffman
-- **Códigos variáveis:** Baseados em frequência
-- **Construção bottom-up:** Usando min-heap
-- **Árvore binária:** Para decodificação
-- **Aplicação prática:** Compressão de prontuários
-
-## 🔍 Detalhes de Implementação
+## 🎓 Aplicações Didáticas
 
 ### Tabela Hash
-```php
-class TabelaHash {
-    private $tamanho = 1009; // Número primo
-    
-    private function hash($cpf) {
-        return intval($cpf) % $this->tamanho;
-    }
-    
-    public function inserir($cpf, $paciente) {
-        $indice = $this->hash($cpf);
-        $this->buckets[$indice][$cpf] = $paciente;
-    }
-}
-```
+
+* Função: `hash(CPF) = CPF % 1009`
+* Colisões tratadas por encadeamento separado
+* Aplicação: busca instantânea de pacientes
 
 ### Árvore AVL
-```php
-private function balancear($no) {
-    $fator = $this->fatorBalanceamento($no);
-    
-    // Rotação à direita
-    if ($fator > 1 && $this->fatorBalanceamento($no->esquerda) >= 0) {
-        return $this->rotacaoDireita($no);
-    }
-    
-    // Rotação à esquerda
-    if ($fator < -1 && $this->fatorBalanceamento($no->direita) <= 0) {
-        return $this->rotacaoEsquerda($no);
-    }
-    
-    return $no;
-}
-```
+
+* Rotação simples e dupla
+* Fator de balanceamento entre -1 e +1
+* Mantém estrutura ordenada por data/hora
 
 ### Min-Heap
-```php
-private function heapifyUp($indice) {
-    $pai = intval(($indice - 1) / 2);
-    
-    if ($pai >= 0 && $this->heap[$indice]['prioridade'] < $this->heap[$pai]['prioridade']) {
-        $this->trocar($indice, $pai);
-        $this->heapifyUp($pai);
-    }
-}
-```
+
+* Propriedade: pai ≤ filhos
+* Heapify Up/Down
+* Priorização por gravidade: 1 = emergência, 2 = urgente, 3 = normal
 
 ### Huffman
-```php
-public function construirArvore($frequencias) {
-    $heap = new MinHeap();
-    
-    // Criar nós folha
-    foreach ($frequencias as $char => $freq) {
-        $heap->inserir(new NoHuffman($char, $freq));
-    }
-    
-    // Construir árvore
-    while ($heap->tamanho() > 1) {
-        $no1 = $heap->extrairMinimo();
-        $no2 = $heap->extrairMinimo();
-        $novoNo = new NoHuffman(null, $no1->freq + $no2->freq);
-        $novoNo->esquerda = $no1;
-        $novoNo->direita = $no2;
-        $heap->inserir($novoNo);
-    }
-    
-    return $heap->extrairMinimo();
-}
-```
 
-## 📈 Métricas e Estatísticas
+* Codificação baseada em frequência
+* Construção bottom-up com heap
+* Compressão de textos clínicos
 
-### Dashboard em Tempo Real
-- **Total de pacientes** cadastrados
-- **Consultas do dia** vs total geral
-- **Fila de urgências** por prioridade
-- **Taxa de compressão** média dos prontuários
+## 📈 Dashboard e Métricas
 
-### Estatísticas Detalhadas
-- **Eficiência da tabela hash:** 98.5%
-- **Altura da árvore AVL:** Sempre logarítmica
-- **Distribuição de urgências:** Por nível de prioridade
-- **Economia de armazenamento:** 40-60% com Huffman
+* Pacientes cadastrados
+* Consultas agendadas (hoje vs total)
+* Fila de urgência por prioridade
+* Taxa média de compressão dos prontuários
 
 ## 🎬 Demonstração em Vídeo
 
-O projeto inclui roteiro completo para demonstração de 4 minutos:
+**Duração total: 4 minutos**
 
-### Cronograma
-- **0:00-0:30** - Introdução e carregamento de dados
-- **0:30-1:10** - Gestão de pacientes (Tabela Hash)
-- **1:10-1:50** - Agendamento (Árvore AVL)
-- **1:50-2:30** - Fila de urgências (Min-Heap)
-- **2:30-3:30** - Compressão (Huffman)
-- **3:30-4:00** - Integração e conclusões
+| Tempo     | Tópico                         |
+| --------- | ------------------------------ |
+| 0:00–0:30 | Introdução e dados demo        |
+| 0:30–1:10 | Cadastro e busca de pacientes  |
+| 1:10–1:50 | Agendamento de consultas (AVL) |
+| 1:50–2:30 | Urgências com Min-Heap         |
+| 2:30–3:30 | Compressão Huffman             |
+| 3:30–4:00 | Integração e conclusão         |
 
-### Pontos Técnicos Destacados
-- Complexidades algorítmicas em ação
-- Performance mensurada em tempo real
-- Justificativas para escolha de cada estrutura
-- Benefícios práticos para ambiente hospitalar
+## 🤝 Equipe
 
-## 🤝 Contribuições
+* **Gabriel** – Tabela Hash, integração geral
+* **Nathan** – Árvore AVL, Min-Heap
+* **Nicolas** – Compressão Huffman, otimizações
 
-### Equipe de Desenvolvimento
-- **Gabriel** - Líder técnico, Tabela Hash, integração
-- **Nathan** - Árvore AVL, Min-Heap, estruturas balanceadas  
-- **Nicolas** - Algoritmo de Huffman, compressão, otimização
+### Como contribuir
 
-### Como Contribuir
-1. Fork o projeto
-2. Crie uma branch para sua feature
-3. Commit suas mudanças
-4. Push para a branch
+1. Fork o repositório
+2. Crie uma branch: `git checkout -b minha-feature`
+3. Commit: `git commit -m "Minha contribuição"`
+4. Push: `git push origin minha-feature`
 5. Abra um Pull Request
 
 ## 📚 Referências
 
-### Bibliografia Técnica
-- Cormen, T. H. et al. **Introduction to Algorithms**, 3rd Edition
-- Sedgewick, R. **Algorithms**, 4th Edition  
-- Huffman, D. A. **"A Method for the Construction of Minimum-Redundancy Codes"** (1952)
-- Adelson-Velsky, G. M.; Landis, E. M. **"An algorithm for the organization of information"** (1962)
+* Cormen, T. H. *Introduction to Algorithms*, 3ª edição
+* Sedgewick, R. *Algorithms*, 4ª edição
+* Huffman, D. A. *"A Method for the Construction of Minimum-Redundancy Codes" (1952)*
+* Adelson-Velsky, G. M. e Landis, E. M. *"An algorithm for the organization of information" (1962)*
 
 ### Recursos Online
-- [Visualização de Algoritmos](https://visualgo.net/)
-- [Documentação PHP](https://php.net/manual/)
-- [MDN Web Docs](https://developer.mozilla.org/)
+
+* [VisualGo - Visualizador de Estruturas](https://visualgo.net/)
+* [PHP Manual](https://www.php.net/manual/pt_BR/)
+* [MDN JavaScript Docs](https://developer.mozilla.org/)
 
 ## 📄 Licença
 
-Este projeto é desenvolvido para fins educacionais como parte do curso de Estruturas de Dados e Algoritmos.
+Projeto acadêmico para fins educacionais – disciplina de Estruturas de Dados.
 
 ## 📞 Contato
 
-Para dúvidas técnicas ou demonstrações adicionais:
-- **Email:** [seu-email@universidade.edu.br]
-- **GitHub:** [https://github.com/seu-usuario/agenda-medica-v2]
+* **Email:** [seu-email@universidade.edu.br](mailto:seu-email@universidade.edu.br)
+* **GitHub:** [https://github.com/seu-usuario/agenda-medica-v2](https://github.com/seu-usuario/agenda-medica-v2)
 
 ---
 
 ## 🏆 Conclusão
 
-Este sistema demonstra a aplicação prática de estruturas de dados clássicas em um cenário real, provando que teoria e prática caminham juntas na ciência da computação. Cada estrutura foi escolhida estrategicamente para otimizar operações específicas, resultando em um sistema eficiente e escalável para ambiente hospitalar.
+Este projeto demonstra como algoritmos clássicos e estruturas de dados podem ser aplicados em soluções reais com impacto prático. A abordagem modular e orientada a desempenho permite explorar conceitos fundamentais de ciência da computação em um contexto significativo e profissional.
 
-**Desenvolvido com 💻 e ☕ pela equipe Gabriel, Nathan e Nicolas**
+**Desenvolvido com 💻 e ☕ por Gabriel, Nathan e Nicolas**
 
 ---
 
-*Última atualização: Dezembro 2024*
+*Última atualização: Junho de 2025*
+
 ```
 
-## 🎯 **CARACTERÍSTICAS DO README:**
+---
 
-### ✅ **Completo e Profissional:**
-- Visão geral clara do projeto
-- Instruções detalhadas de instalação
-- Documentação técnica completa
-- Exemplos de código práticos
-
-### ✅ **Educacional:**
-- Explicação das estruturas de dados
-- Análise de complexidade detalhada
-- Conceitos teóricos aplicados
-- Referências bibliográficas
-
-### ✅ **Prático:**
-- Endpoints da API documentados
-- Exemplos de requisições
-- Estrutura de arquivos clara
-- Guia de testes
-
-### ✅ **Visual:**
-- Emojis para organização
-- Tabelas comparativas
-- Código formatado
-- Seções bem estruturadas
-
-**Este README serve como documentação completa e guia de estudos para o projeto! 🚀**
+Se quiser, posso gerar a versão `.md` final ou um `.pdf` desse README para documentação acadêmica. Deseja?
+```
