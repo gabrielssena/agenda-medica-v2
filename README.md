@@ -289,8 +289,3 @@ Este projeto demonstra como algoritmos clássicos e estruturas de dados podem se
 *Última atualização: Junho de 2025*
 
 ```
-
----
-
-Se quiser, posso gerar a versão `.md` final ou um `.pdf` desse README para documentação acadêmica. Deseja?
-```
