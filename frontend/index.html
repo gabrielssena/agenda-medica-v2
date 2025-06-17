@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda Médica Inteligente v2.0</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>🏥 Agenda Médica Inteligente</h1>
+            <p class="subtitle">Sistema de Gestão Hospitalar com Estruturas de Dados Avançadas</p>
+            <div id="connection-status" class="status-indicator">
+                <span class="status-dot"></span>
+                <span class="status-text">Conectando...</span>
+            </div>
+        </header>
+
+        <!-- CONTROLES DE DEMONSTRAÇÃO -->
+        <div class="demo-controls"
+            style="text-align: center; margin: 20px 0; padding: 20px; background: rgba(255,255,255,0.9); border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+            <h3>🎬 Controles de Demonstração</h3>
+            <div style="display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 15px;">
+                <button class="btn primary" onclick="popularDadosDemo()" style="margin: 5px;">
+                    📊 Popular Sistema com Dados Realistas
+                </button>
+                <button class="btn secondary" onclick="resetarSistema()" style="margin: 5px;">
+                    🔄 Resetar Sistema
+                </button>
+                <button class="btn secondary" onclick="gerarRelatorioCompleto()" style="margin: 5px;">
+                    📋 Relatório Completo
+                </button>
+            </div>
+            <p style="margin-top: 10px; font-size: 0.9em; color: #666;">
+                💡 Use estes controles para demonstrar o sistema com dados médicos realistas
+            </p>
+        </div>
+
+        <nav class="navigation">
+            <button class="nav-btn active" onclick="showSection('dashboard')">📊 Dashboard</button>
+            <button class="nav-btn" onclick="showSection('pacientes')">👥 Pacientes</button>
+            <button class="nav-btn" onclick="showSection('consultas')">📅 Consultas</button>
+            <button class="nav-btn" onclick="showSection('urgencias')">🚨 Urgências</button>
+            <button class="nav-btn" onclick="showSection('compressao')">🗜️ Compressão</button>
+        </nav>
+
+        <!-- DASHBOARD SECTION -->
+        <section id="dashboard-section" class="section active">
+            <h2>📊 Dashboard Principal</h2>
+
+            <div class="stats-grid">
+                <div class="stat-card patients">
+                    <div class="stat-icon">👥</div>
+                    <div class="stat-content">
+                        <span id="total-pacientes" class="stat-number">0</span>
+                        <span class="stat-label">Pacientes</span>
+                        <small class="stat-detail">Tabela Hash - O(1)</small>
+                    </div>
+                </div>
+
+                <div class="stat-card consultations">
+                    <div class="stat-icon">📅</div>
+                    <div class="stat-content">
+                        <span id="consultas-hoje" class="stat-number">0</span>
+                        <span class="stat-label">Consultas Hoje</span>
+                        <small class="stat-detail">Árvore AVL - O(log n)</small>
+                    </div>
+                </div>
+
+                <div class="stat-card urgencies">
+                    <div class="stat-icon">🚨</div>
+                    <div class="stat-content">
+                        <span id="urgencias-fila" class="stat-number">0</span>
+                        <span class="stat-label">Urgências</span>
+                        <small class="stat-detail">Fila Prioridade - O(log n)</small>
+                    </div>
+                </div>
+
+                <div class="stat-card occupation">
+                    <div class="stat-icon">📈</div>
+                    <div class="stat-content">
+                        <span id="taxa-ocupacao" class="stat-number">0%</span>
+                        <span class="stat-label">Eficiência Hash</span>
+                        <small class="stat-detail">Sistema Geral</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-grid">
+                <div class="dashboard-card">
+                    <h3>📅 Consultas de Hoje</h3>
+                    <div id="consultas-hoje-list" class="list-container">
+                        <div class="loading">Carregando consultas...</div>
+                    </div>
+                </div>
+
+                <div class="dashboard-card">
+                    <h3>🚨 Fila de Urgências</h3>
+                    <div id="urgencias-list" class="list-container">
+                        <div class="loading">Carregando urgências...</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PACIENTES SECTION -->
+        <section id="pacientes-section" class="section">
+            <h2>👥 Gestão de Pacientes</h2>
+            <p class="section-description">Sistema de busca rápida usando <strong>Tabela Hash</strong> - Complexidade
+                O(1)</p>
+
+            <div class="action-buttons">
+                <button class="btn primary" onclick="loadPacientes()">🔄 Atualizar Lista</button>
+                <button class="btn secondary" onclick="showHashStats()">📊 Estatísticas Hash</button>
+            </div>
+
+            <div id="pacientes-list" class="data-container">
+                <div class="loading">Carregando pacientes...</div>
+            </div>
+        </section>
+
+        <!-- CONSULTAS SECTION -->
+        <section id="consultas-section" class="section">
+            <h2>📅 Agendamento de Consultas</h2>
+            <p class="section-description">Ordenação cronológica usando <strong>Árvore AVL</strong> - Complexidade O(log
+                n)</p>
+
+            <div class="action-buttons">
+                <button class="btn primary" onclick="loadConsultas()">🔄 Atualizar Consultas</button>
+                <button class="btn secondary" onclick="showAVLStats()">🌳 Visualizar Árvore</button>
+            </div>
+
+            <div id="consultas-list" class="data-container">
+                <div class="loading">Carregando consultas...</div>
+            </div>
+        </section>
+
+        <!-- URGÊNCIAS SECTION -->
+        <section id="urgencias-section" class="section">
+            <h2>🚨 Fila de Urgências</h2>
+            <p class="section-description">Priorização automática usando <strong>Fila de Prioridade</strong> -
+                Complexidade O(log n)</p>
+
+            <div class="action-buttons">
+                <button class="btn primary" onclick="loadUrgencias()">🔄 Atualizar Fila</button>
+                <button class="btn danger" onclick="chamarProximo()">📢 Chamar Próximo</button>
+            </div>
+
+            <div class="priority-legend">
+                <span class="priority-item emergency">🔴 Emergência</span>
+                <span class="priority-item urgent">🟡 Urgente</span>
+                <span class="priority-item normal">🟢 Normal</span>
+            </div>
+
+            <div id="urgencias-list" class="data-container">
+                <div class="loading">Carregando urgências...</div>
+            </div>
+        </section>
+
+        <!-- COMPRESSÃO SECTION -->
+        <section id="compressao-section" class="section">
+            <h2>🗜️ Compressão de Dados Médicos</h2>
+            <p class="section-description">Otimização de armazenamento usando <strong>Algoritmo de Huffman</strong></p>
+
+            <div class="action-buttons">
+                <button class="btn primary" onclick="demonstrarCompressao()">🧪 Demonstração</button>
+                <button class="btn secondary" onclick="showCompressionStats()">📊 Estatísticas</button>
+            </div>
+
+            <div id="compressao-demo" class="data-container">
+                <div class="loading">Preparando demonstração...</div>
+            </div>
+        </section>
+
+        <!-- LOADING OVERLAY -->
+        <div id="loading-overlay" class="loading-overlay">
+            <div class="spinner"></div>
+            <p>Carregando dados...</p>
+        </div>
+
+        <!-- NOTIFICATION AREA -->
+        <div id="notifications" class="notifications"></div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Agenda Médica - Hospital São Paulo</title>
+    <link rel="stylesheet" href="css/style_funcional.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <h1>🏥 Hospital São Paulo</h1>
+                <p>Sistema de Gestão Médica</p>
+            </div>
+            <div class="status" id="connection-status">
+                <span class="status-indicator"></span>
+                <span id="status-text">Conectando...</span>
+            </div>
+        </header>
+
+        <!-- Navegação -->
+        <nav class="nav-tabs">
+            <button class="tab-btn active" data-tab="dashboard">📊 Dashboard</button>
+            <button class="tab-btn" data-tab="cadastrar">👤 Cadastrar Paciente</button>
+            <button class="tab-btn" data-tab="buscar">🔍 Buscar Paciente</button>
+            <button class="tab-btn" data-tab="agendar">📅 Agendar Consulta</button>
+            <button class="tab-btn" data-tab="urgencia">🚨 Urgências</button>
+            <button class="tab-btn" data-tab="prontuario">📋 Prontuários</button>
+        </nav>
+
+        <!-- Conteúdo -->
+        <main class="main-content">
+            
+            <!-- Dashboard -->
+            <section id="dashboard" class="tab-content active">
+                <h2>📊 Dashboard - Situação Atual</h2>
+                <div class="dashboard-cards">
+                    <div class="card">
+                        <h3>👥 Pacientes Cadastrados</h3>
+                        <div class="card-value" id="total-pacientes">0</div>
+                        <p>Busca instantânea em menos de 1ms</p>
+                    </div>
+                    <div class="card">
+                        <h3>📅 Consultas Hoje</h3>
+                        <div class="card-value" id="consultas-hoje">0</div>
+                        <p>Agenda otimizada automaticamente</p>
+                    </div>
+                    <div class="card">
+                        <h3>🚨 Fila de Urgência</h3>
+                        <div class="card-value" id="urgencias-fila">0</div>
+                        <p>Priorização automática por gravidade</p>
+                    </div>
+                    <div class="card">
+                        <h3>💾 Prontuários</h3>
+                        <div class="card-value" id="prontuarios-comprimidos">0</div>
+                        <p>Compressão inteligente economiza 40% espaço</p>
+                    </div>
+                </div>
+                
+                <div class="quick-actions">
+                    <button class="btn btn-primary" onclick="app.popularDadosDemo()">📊 Carregar Dados Demo</button>
+                    <button class="btn btn-secondary" onclick="app.resetarSistema()">🔄 Limpar Sistema</button>
+                </div>
+            </section>
+
+            <!-- Cadastrar Paciente -->
+            <section id="cadastrar" class="tab-content">
+                <h2>👤 Cadastrar Novo Paciente</h2>
+                <form id="form-paciente" class="form-grid">
+                    <div class="form-group">
+                        <label for="nome">Nome Completo *</label>
+                        <input type="text" id="nome" required placeholder="Ex: João Silva Santos">
+                    </div>
+                    <div class="form-group">
+                        <label for="cpf">CPF *</label>
+                        <input type="text" id="cpf" required placeholder="000.000.000-00" maxlength="14">
+                    </div>
+                    <div class="form-group">
+                        <label for="idade">Idade</label>
+                        <input type="number" id="idade" min="0" max="120" placeholder="35">
+                    </div>
+                    <div class="form-group">
+                        <label for="telefone">Telefone</label>
+                        <input type="tel" id="telefone" placeholder="(11) 99999-9999">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" placeholder="joao@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="convenio">Convênio</label>
+                        <select id="convenio">
+                            <option value="SUS">SUS</option>
+                            <option value="Unimed">Unimed</option>
+                            <option value="Bradesco">Bradesco Saúde</option>
+                            <option value="Amil">Amil</option>
+                            <option value="SulAmerica">SulAmérica</option>
+                        </select>
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="endereco">Endereço</label>
+                        <input type="text" id="endereco" placeholder="Rua, número, bairro, cidade">
+                    </div>
+                    <div class="form-actions full-width">
+                        <button type="submit" class="btn btn-success">✅ Cadastrar Paciente</button>
+                        <button type="reset" class="btn btn-secondary">🔄 Limpar Formulário</button>
+                    </div>
+                </form>
+                <div id="resultado-cadastro" class="result-area"></div>
+            </section>
+
+            <!-- Buscar Paciente -->
+            <section id="buscar" class="tab-content">
+                <h2>🔍 Buscar Paciente</h2>
+                <div class="search-area">
+                    <div class="search-box">
+                        <input type="text" id="busca-cpf" placeholder="Digite o CPF do paciente" maxlength="14">
+                        <button class="btn btn-primary" onclick="app.buscarPaciente()">🔍 Buscar</button>
+                    </div>
+                    <p class="search-info">💡 A busca é instantânea usando Tabela Hash - Complexidade O(1)</p>
+                </div>
+                <div id="resultado-busca" class="result-area"></div>
+                
+                <div class="patients-list">
+                    <h3>👥 Pacientes Cadastrados</h3>
+                    <div id="lista-pacientes"></div>
+                </div>
+            </section>
+
+            <!-- Agendar Consulta -->
+            <section id="agendar" class="tab-content">
+                <h2>📅 Agendar Nova Consulta</h2>
+                <form id="form-consulta" class="form-grid">
+                    <div class="form-group">
+                        <label for="consulta-cpf">CPF do Paciente *</label>
+                        <input type="text" id="consulta-cpf" required placeholder="000.000.000-00">
+                        <button type="button" class="btn-small" onclick="app.verificarPacienteConsulta()">Verificar</button>
+                    </div>
+                    <div class="form-group">
+                        <label for="data-consulta">Data *</label>
+                        <input type="date" id="data-consulta" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="hora-consulta">Horário *</label>
+                        <input type="time" id="hora-consulta" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="medico">Médico *</label>
+                        <select id="medico" required>
+                            <option value="">Selecione o médico</option>
+                            <option value="Dr. Carlos Roberto - Cardiologia">Dr. Carlos Roberto - Cardiologia</option>
+                            <option value="Dra. Ana Paula - Ginecologia">Dra. Ana Paula - Ginecologia</option>
+                            <option value="Dr. José Fernando - Geriatria">Dr. José Fernando - Geriatria</option>
+                            <option value="Dr. Ricardo Oliveira - Ortopedia">Dr. Ricardo Oliveira - Ortopedia</option>
+                            <option value="Dra. Mariana Costa - Endocrinologia">Dra. Mariana Costa - Endocrinologia</option>
+                        </select>
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="observacoes">Observações</label>
+                        <textarea id="observacoes" placeholder="Motivo da consulta, sintomas, etc."></textarea>
+                    </div>
+                    <div class="form-actions full-width">
+                        <button type="submit" class="btn btn-success">📅 Agendar Consulta</button>
+                    </div>
+                </form>
+                <div id="resultado-agendamento" class="result-area"></div>
+                
+                <div class="agenda-view">
+                    <h3>📅 Consultas Agendadas</h3>
+                    <p class="info">🌳 Agenda otimizada com Árvore AVL - Sempre balanceada O(log n)</p>
+                    <div id="lista-consultas"></div>
+                </div>
+            </section>
+
+            <!-- Urgências -->
+            <section id="urgencia" class="tab-content">
+                <h2>🚨 Fila de Urgência</h2>
+                <form id="form-urgencia" class="form-grid">
+                    <div class="form-group">
+                        <label for="urgencia-cpf">CPF do Paciente *</label>
+                        <input type="text" id="urgencia-cpf" required placeholder="000.000.000-00">
+                    </div>
+                    <div class="form-group">
+                        <label for="prioridade">Nível de Prioridade *</label>
+                        <select id="prioridade" required>
+                            <option value="">Selecione a prioridade</option>
+                            <option value="1">🔴 Emergência - Risco de vida</option>
+                            <option value="2">🟡 Urgente - Necessita atendimento rápido</option>
+                            <option value="3">🟢 Normal - Pode aguardar</option>
+                        </select>
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="descricao-urgencia">Descrição do Caso *</label>
+                        <textarea id="descricao-urgencia" required placeholder="Descreva os sintomas e situação do paciente"></textarea>
+                    </div>
+                    <div class="form-actions full-width">
+                        <button type="submit" class="btn btn-danger">🚨 Adicionar à Fila</button>
+                    </div>
+                </form>
+                <div id="resultado-urgencia" class="result-area"></div>
+                
+                <div class="urgency-queue">
+                    <h3>🚨 Fila de Atendimento</h3>
+                    <p class="info">⚡ Fila otimizada com Heap - Priorização automática O(log n)</p>
+                    <div class="queue-controls">
+                        <button class="btn btn-primary" onclick="app.chamarProximo()">📢 Chamar Próximo</button>
+                        <button class="btn btn-secondary" onclick="app.atualizarFila()">🔄 Atualizar Fila</button>
+                    </div>
+                    <div id="fila-urgencias"></div>
+                </div>
+            </section>
+
+            <!-- Prontuários -->
+            <section id="prontuario" class="tab-content">
+                <h2>📋 Gestão de Prontuários</h2>
+                <div class="prontuario-search">
+                    <input type="text" id="prontuario-cpf" placeholder="CPF do paciente">
+                    <button class="btn btn-primary" onclick="app.buscarProntuario()">📋 Buscar Prontuário</button>
+                </div>
+                
+                <div id="prontuario-resultado" class="result-area"></div>
+                
+                <div class="compression-demo">
+                    <h3>💾 Demonstração de Compressão</h3>
+                    <p class="info">🗜️ Algoritmo Huffman - Reduz espaço em até 40%</p>
+                    <button class="btn btn-info" onclick="app.demonstrarCompressao()">🧪 Demonstrar Compressão</button>
+                    <div id="compressao-resultado"></div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Notificações -->
+    <div id="notification" class="notification"></div>
+    
+    <!-- Loading -->
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="loading-spinner"></div>
+        <p>Processando...</p>
+    </div>
+
+    <script src="js/app_funcional.js"></script>
+</body>
+</html>
